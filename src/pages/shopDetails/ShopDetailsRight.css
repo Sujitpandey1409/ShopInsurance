@@ -1,0 +1,129 @@
+.shop-details-right-sec-container {
+    padding: 0 60px 0 20px;
+    flex-grow: 1;
+}
+
+.shop-details-right-sec {
+    margin-top: 108px;
+    padding: 20px;
+    /* width: 658px; */
+    border: 1px solid #2C3B97;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0px 4px 30px 0px #2C3B971A;
+}
+
+.detail-header-icon-container {
+    width: 53px;
+    height: 53px;
+    padding: 1.2px 0px 0px 0px;
+    border-radius: 10px;
+    opacity: 0px;
+}
+
+.detail-header-title {
+    font-family: Mukta;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 33.24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+    span {
+        font-family: Mukta;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 33.24px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+    }
+}
+
+.detail-header-title-details {
+    font-family: Mukta;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26.59px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.label-text {
+    font-family: Mukta;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 23.27px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+    span {
+        font-family: Mukta;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 23.27px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        color: red;
+    }
+}
+
+
+.ownership-box {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 111px;
+    height: 97px;
+    padding-top: 13px;
+    gap: 7px;
+    opacity: 0px;
+    border: 1px solid #CFCECF;
+    border-radius: 8px;
+    font-family: Mukta;
+    font-size: 12.46px;
+    font-weight: 600;
+    line-height: 20.71px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #232323;
+}
+
+.cicrcular-icon {
+    width: 42px;
+    height: 42px;
+    left: 9.27px;
+    gap: 0px;
+    opacity: 0px;
+
+}
+
+.ownership-box-active {
+    border: 1px solid #2C3B97;
+
+}
+
+@media (max-width:950px) {
+    .shop-details-right-sec-container {
+        padding-left: 60px;
+    }
+}
+
+@media (max-width:768px) {
+    .shop-details-right-sec-container {
+        padding: 22px;
+    }
+
+    .mt-responive {
+        margin-top: 11px;
+    }
+}

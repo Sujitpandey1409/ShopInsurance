@@ -1,0 +1,9 @@
+.shop-details-wrapper{
+    /* minHeight:'100vh', minWidth:'100vw', background:'#F4F4F4' */
+    /* padding: 7px 60px 0; */
+    min-height: 100vh;
+}
+.shop-details-container{
+    min-height: 100vh;
+    height: -webkit-fill-available;
+}

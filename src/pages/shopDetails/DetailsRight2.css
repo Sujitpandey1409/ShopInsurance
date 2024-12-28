@@ -1,0 +1,88 @@
+.step-tab-container {
+    width: 57px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    opacity: 0px;
+    background: #D9FFE2;
+    font-family: Mukta;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 19.94px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #2DA44A;
+}
+
+.details-right2-box {
+    border-radius: 8px;
+    border: 0.5px 0px 0px 0px;
+    opacity: 0px;
+    border: 0.5px solid #B5B5B5;
+    cursor: pointer;
+
+    .label-text {
+        font-family: Mukta;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 26.59px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        color: #000000CC;
+
+    }
+
+    .icon-container {
+        width: 63px;
+        height: 57px;
+        top: 14px;
+        left: 533px;
+        gap: 0px;
+        opacity: 0px;
+        float: right;
+    }
+
+    .icon-check {
+        width: 18px;
+        height: 18px;
+        top: 18px;
+
+    }
+}
+
+.details-right2-content-text {
+    font-family: Mukta;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.6px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #575859CC;
+
+}
+
+.value-between-text {
+    font-family: Mukta;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 19.94px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+    span {
+        font-family: Mukta;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 19.94px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        color:#334BC2;
+    }
+}
