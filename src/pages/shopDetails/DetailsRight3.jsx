@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Col, Form, Input, Row } from "reactstrap";
+import React, { useState } from "react";
+import { Col, Form, FormGroup, Input, Row } from "reactstrap";
 import headerIcon from "../../assets/IconDetail.svg";
 import ownshipIcon from "../../assets/ownersipIcon.svg";
 import ownshipIconT from "../../assets/ownershipIconT.svg";
@@ -10,16 +10,27 @@ import icon2 from "../../assets/icon2DetailRight.svg";
 import icon3 from "../../assets/icon3DetailRight.svg";
 import iconChecked from "../../assets/IconChecked.svg";
 import iconUnchecked from "../../assets/IconUnchecked.svg";
-import { DetailContext } from "../../contexts/DetailPageProvider";
+import { useNavigate } from "react-router-dom";
 
 // fetched from backend or else pincode may be just input box
+const pinCodOptions = [
+  { value: "400011", label: "400011" },
+  { value: "400012", label: "400012" },
+  { value: "400013", label: "400013" },
+];
+const businessOptions = [
+  { value: "BusinessType1", label: "BusinessType1" },
+  { value: "BusinessType2", label: "BusinessType2" },
+  { value: "BusinessType3", label: "BusinessType3" },
+];
 
-const DetailsRight2 = ({ setStep }) => {
-  const { detailPageData, setDetailPageData } = useContext(DetailContext);
+const DetailsRight3 = () => {
   const [selectedBox, setSelectedBox] = useState("1");
-  const [valueContent, setValueContent] = useState("");
-  const [valueStock, setValueStock] = useState("");
-  const [valueBuilding, setValueBuilding] = useState("");
+  const [valuesContent, setValuesContent] = useState({});
+  const [valuesStock, setValuesStock] = useState({});
+  const [valuesBuilding, setValuesBuilding] = useState({});
+
+  const navigate = useNavigate();
 
   //   formatCurrency handler to format rs input
   const formatCurrency = (inputValue) => {
@@ -32,23 +43,23 @@ const DetailsRight2 = ({ setStep }) => {
     return formattedValue;
   };
   const handleChange = (event) => {
-    const rawValue = event.target.value;
+    const { name, value } = event.target;
 
+    const formattedVal = formatCurrency(value);
+    //updating values as per labeling name
     switch (true) {
       case selectedBox === "1":
-        setValueContent(formatCurrency(rawValue));
+        setValuesContent((prev) => ({ ...prev, [name]: formattedVal }));
         break;
       case selectedBox === "2":
-        setValueStock(formatCurrency(rawValue));
+        setValuesStock((prev) => ({ ...prev, [name]: formattedVal }));
         break;
       case selectedBox === "3":
-        setValueBuilding(formatCurrency(rawValue));
+        setValuesBuilding((prev) => ({ ...prev, [name]: formattedVal }));
         break;
-
       default:
         break;
     }
-    setValueContent(formatCurrency(rawValue)); // Update the state with the formatted value
   };
 
   //   logic to handle click on boxes(boxes switch)
@@ -68,13 +79,8 @@ const DetailsRight2 = ({ setStep }) => {
   // backend handling here
   const handleSubmitDetails = async (e) => {
     e.preventDefault();
-    setDetailPageData({
-      ...detailPageData,
-      buildingSumInsured: valueBuilding,
-      stockSumInsured: valueStock,
-      contentSumInsured: valueContent,
-    });
-    setStep("3");
+    console.log(valuesContent, valuesStock, valuesBuilding);
+    navigate('/travel-plans')
   };
 
   return (
@@ -93,14 +99,17 @@ const DetailsRight2 = ({ setStep }) => {
         </div>
       </div>
       <hr />
-      <div className="step-tab-container">Step 1/2</div>
+      <div className="step-tab-container">Step 2/2</div>
       <div className="d-flex flex-column mt-2 gap-4">
         {/* ****First Box**** */}
         <Form onSubmit={handleSubmitBox}>
           <div
             onClick={() => handleClickBoxes("1")}
             className="details-right2-box w-100"
-            style={{ borderBottom: selectedBox !== "1" && "2px solid #FBB040" }}
+            style={{
+              borderBottom: selectedBox !== "1" && "2px solid #FBB040",
+              position: "relative",
+            }}
           >
             <div className="d-flex gap-2 align-items-start w-100 p-3">
               {/* <input className="align-self-start mt-1" id="content" type="radio" name="selectInsurer" /> */}
@@ -118,26 +127,50 @@ const DetailsRight2 = ({ setStep }) => {
                   <br />
                   other content within the building premises
                 </div>
-                {selectedBox === "1" && (
-                  <Input
-                    className="mt-3"
-                    type="text"
-                    placeholder="₹ "
-                    value={valueContent}
-                    onChange={handleChange}
-                  />
-                )}
-                {selectedBox === "1" && (
-                  <div className="value-between-text">
-                    Content value between <span>50,000</span> to <span>50</span>{" "}
-                    Cr
-                  </div>
-                )}
               </div>
               <div className="icon-container">
                 <img src={icon1} alt="icon1" />
               </div>
             </div>
+            {selectedBox === "1" && (
+              <Row className="step2-inp-container" form>
+                <Col md={6}>
+                  <label className="label-text-sm">Plant and machinery</label>
+                  <Input
+                    className="mt-1"
+                    type="text"
+                    placeholder="Enter Amount "
+                    name="plantMachinery"
+                    value={valuesContent.plantMachinery} //change value as per requirement
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6}>
+                  <label className="label-text-sm">
+                    furniture and fittings
+                  </label>
+                  <Input
+                    className="mt-1"
+                    type="text"
+                    placeholder="Enter Amount"
+                    name="furnitureFittings"
+                    value={valuesContent.furnitureFittings}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6}>
+                  <label className="label-text-sm">Others</label>
+                  <Input
+                    className="mt-1"
+                    type="text"
+                    placeholder="Enter Amount"
+                    name="Others"
+                    value={valuesContent.Others}
+                    onChange={handleChange}
+                  />
+                </Col>
+              </Row>
+            )}
           </div>
         </Form>
 
@@ -163,26 +196,56 @@ const DetailsRight2 = ({ setStep }) => {
                   within the
                   <br /> building premises
                 </div>
-                {selectedBox === "2" && (
-                  <Input
-                    className="mt-3"
-                    type="text"
-                    placeholder="₹ "
-                    value={valueStock}
-                    onChange={handleChange}
-                  />
-                )}
-                {selectedBox === "2" && (
-                  <div className="value-between-text">
-                    Stock value between <span>50,000</span> to <span>50</span>{" "}
-                    Cr
-                  </div>
-                )}
               </div>
               <div className="icon-container">
                 <img src={icon2} alt="icon1" />
               </div>
             </div>
+            {selectedBox === "2" && (
+              <Row className="step2-inp-container" form>
+                <Col md={6}>
+                  <FormGroup>
+                    <label className="label-text-sm">Plant and machinery</label>
+                    <Input
+                      className="mt-1"
+                      type="text"
+                      placeholder="Enter Amount"
+                      name="plantMachinery"
+                      value={valuesStock.plantMachinery}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <label className="label-text-sm">
+                      furniture and fittings
+                    </label>
+                    <Input
+                      className="mt-1"
+                      type="text"
+                      placeholder="Enter Amount"
+                      name="furnitureFittings"
+                      value={valuesStock.furnitureFittings}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <label className="label-text-sm">Others</label>
+                    <Input
+                      className="mt-1"
+                      type="text"
+                      placeholder="Enter Amount"
+                      name="Others"
+                      value={valuesStock.Others}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+            )}
           </div>
         </Form>
 
@@ -209,26 +272,48 @@ const DetailsRight2 = ({ setStep }) => {
                   <br />
                   and foundation
                 </div>
-                {selectedBox === "3" && (
-                  <Input
-                    className="mt-3"
-                    type="text"
-                    placeholder="₹ "
-                    value={valueBuilding}
-                    onChange={handleChange}
-                  />
-                )}
-                {selectedBox === "3" && (
-                  <div className="value-between-text">
-                    Building value between <span>50,000</span> to{" "}
-                    <span>50</span> Cr
-                  </div>
-                )}
               </div>
               <div className="icon-container">
                 <img src={icon3} alt="icon1" />
               </div>
             </div>
+            {selectedBox === "3" && (
+              <Row className="step2-inp-container" form>
+                <Col md={6}>
+                  <label className="label-text-sm">Raw material</label>
+                  <Input
+                    className="mt-1"
+                    type="text"
+                    placeholder="Enter Amount"
+                    name="rawMaterial"
+                    value={valuesBuilding.rawMaterial}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6}>
+                  <label className="label-text-sm">finished goods</label>
+                  <Input
+                    className="mt-1"
+                    type="text"
+                    placeholder="Enter Amount"
+                    name="finishedGoods"
+                    value={valuesBuilding.finishedGoods}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6}>
+                  <label className="label-text-sm">stock in progress</label>
+                  <Input
+                    className="mt-1"
+                    type="text"
+                    placeholder="Enter Amount"
+                    name="stockProgress"
+                    value={valuesBuilding.stockProgress}
+                    onChange={handleChange}
+                  />
+                </Col>
+              </Row>
+            )}
           </div>
         </Form>
       </div>
@@ -239,4 +324,4 @@ const DetailsRight2 = ({ setStep }) => {
   );
 };
 
-export default DetailsRight2;
+export default DetailsRight3;

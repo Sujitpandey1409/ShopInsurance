@@ -1,0 +1,31 @@
+.addOnFormContainer {
+    width: 243px;
+    border-radius: 10px;
+
+    .title-text {
+        font-family: Mukta;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 23.27px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        color: #2B3545;
+    }
+
+    label {
+        font-family: Mukta;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 21.61px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        color: #2B3545CC;
+    }
+
+    button {
+        background: #283B99;
+
+    }
+}

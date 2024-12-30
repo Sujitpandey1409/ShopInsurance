@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { DetailProvider } from './contexts/DetailPageProvider';
+import { PlanProvider } from './contexts/PlanProvider';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <DetailProvider>
-      <App />
+      <PlanProvider>
+        <App />
+      </PlanProvider>
     </DetailProvider>
   </React.StrictMode>
 );

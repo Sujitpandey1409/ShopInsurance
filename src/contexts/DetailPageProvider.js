@@ -9,6 +9,11 @@ export const DetailProvider = ({ children }) => {
     riskLocationPinCode: '',
     typeOfBusiness: '',
     ownerShipType: [],
+    buildingSumInsured:0,
+    stockSumInsured:0,
+    contentSumInsured:0,
+    policyTenure:1,
+    startDate:''
   });
 
 

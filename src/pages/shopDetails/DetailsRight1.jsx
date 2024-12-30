@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Col, Row } from "reactstrap";
 import headerIcon from "../../assets/IconDetail.svg";
 import ownshipIcon from "../../assets/ownersipIcon.svg";
 import ownshipIconT from "../../assets/ownershipIconT.svg";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
+import { DetailContext } from "../../contexts/DetailPageProvider";
 
 // fetched from backend or else pincode may be just input box
 const pinCodOptions = [
@@ -18,14 +19,15 @@ const businessOptions = [
   { value: "BusinessType3", label: "BusinessType3" },
 ];
 
-const DetailsRight1 = ({setStep}) => {
+const DetailsRight1 = ({ setStep }) => {
+  const { detailPageData, setDetailPageData } = useContext(DetailContext);
   const [selectedPin, setSelectedPin] = useState();
   const [detailErrors, setDetailErrors] = useState({});
   const [selectedBusiness, setSelectedBusiness] = useState();
   const [isOwned, setisOwned] = useState(false);
   const [isTenant, setisTenant] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleClickOwnership = (opt) => {
     opt === "owned"
       ? setisOwned((prev) => !prev)
@@ -54,13 +56,13 @@ const DetailsRight1 = ({setStep}) => {
     e.preventDefault();
     console.log(selectedPin);
     const errors = validateDetails();
-    
+
     if (Object.keys(errors).length === 0) {
-        setStep(false);
-    }
-    else{
-        console.log(errors, detailErrors);
-        setDetailErrors(errors)
+      setDetailPageData({...detailPageData, riskLocationPinCode:selectedPin.value, typeOfBusiness:selectedBusiness.value })
+      setStep("2");
+    } else {
+      console.log(errors, detailErrors);
+      setDetailErrors(errors);
     }
   };
 
@@ -93,7 +95,9 @@ const DetailsRight1 = ({setStep}) => {
               onChange={setSelectedPin}
             />
           </div>
-          {detailErrors.selectedPin && <small className="text-danger">{detailErrors.selectedPin}</small>}
+          {detailErrors.selectedPin && (
+            <small className="text-danger">{detailErrors.selectedPin}</small>
+          )}
         </Col>
         <Col md={6}>
           <div className="d-flex flex-column gap-1 text-start w-100 mt-responive">
@@ -107,7 +111,11 @@ const DetailsRight1 = ({setStep}) => {
               onChange={setSelectedBusiness}
             />
           </div>
-          {detailErrors.selectedBusiness && <small className="text-danger">{detailErrors.selectedBusiness}</small>}
+          {detailErrors.selectedBusiness && (
+            <small className="text-danger">
+              {detailErrors.selectedBusiness}
+            </small>
+          )}
         </Col>
       </Row>
       <div className="d-flex flex-column gap-2 mt-3">

@@ -66,6 +66,21 @@
 
 }
 
+.step2-inp-container {
+    padding: 0px 14px 21px 42px;
+
+    input {
+        font-family: Mukta;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 19.94px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        color: #2B354580;
+    }
+}
+
 .value-between-text {
     font-family: Mukta;
     font-size: 12px;
@@ -83,6 +98,6 @@
         text-align: left;
         text-underline-position: from-font;
         text-decoration-skip-ink: none;
-        color:#334BC2;
+        color: #334BC2;
     }
 }
