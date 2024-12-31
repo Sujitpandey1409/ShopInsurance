@@ -29,7 +29,7 @@ const InsuranceCard = ({
   //     console.log(comparisonData);
   // }, [comparisonData]);
   const handleBuyNow = () => {
-    navigate("/travel-verification");
+    navigate("/verification");
   };
 
   const handleChangeCompare = (e) => {
