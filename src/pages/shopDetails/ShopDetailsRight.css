@@ -20,7 +20,7 @@
     height: 53px;
     padding: 1.2px 0px 0px 0px;
     border-radius: 10px;
-    opacity: 0px;
+    /* opacity: 0px; */
 }
 
 .detail-header-title {
@@ -85,7 +85,7 @@
     height: 97px;
     padding-top: 13px;
     gap: 7px;
-    opacity: 0px;
+    /* opacity: 0px; */
     border: 1px solid #CFCECF;
     border-radius: 8px;
     font-family: Mukta;
@@ -103,7 +103,7 @@
     height: 42px;
     left: 9.27px;
     gap: 0px;
-    opacity: 0px;
+    /* opacity: 0px; */
 
 }
 
