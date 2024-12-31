@@ -80,7 +80,7 @@ const DetailsRight3 = () => {
   const handleSubmitDetails = async (e) => {
     e.preventDefault();
     console.log(valuesContent, valuesStock, valuesBuilding);
-    navigate('/travel-plans')
+    navigate('/shop-plans')
   };
 
   return (
